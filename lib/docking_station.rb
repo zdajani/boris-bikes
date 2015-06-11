@@ -1,12 +1,24 @@
-require_relative "bike"
 
 class DockingStation
-  def release_bike
-    Bike.new
+
+  def initialize
+    @bikes = []
   end
 
-def dock bike
+  def release_bike
+    raise "No bikes available" unless has_bikes?
+    @bikes.pop
+  end
 
-end
+  def dock bike
+    @bikes << bike
+  end
 
+  def has_bikes?
+    !@bikes.empty?
+  end
+
+  def bike_count
+    @bikes.count
+  end
 end
