@@ -15,9 +15,9 @@ describe DockingStation do
     end
 
     it 'release working bikes' do
-    subject.dock Bike.new
-    bike = subject.release_bike
-    expect(bike).to be_working
+      subject.dock Bike.new
+      bike = subject.release_bike
+      expect(bike).to be_working
     end
   end
 
@@ -29,7 +29,7 @@ describe DockingStation do
     end
   end
 
-  it "knows that the bike count has increased when adding a bike" do
+  xit "knows that the bike count has increased when adding a bike" do
     bike_count = subject.bike_count
     subject.dock Bike.new
     expect(subject.bike_count).to eq bike_count + 1
@@ -39,11 +39,12 @@ describe DockingStation do
 
   describe 'dock' do
   it 'raises an error when full' do
-    subject.dock Bike.new
+    20.times { subject.dock Bike.new }
     expect { subject.dock Bike.new }.to raise_error 'Docking station full'
     end
   end
 
+  
 
 end
 
