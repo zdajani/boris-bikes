@@ -10,8 +10,10 @@ class DockingStation
   end
 
   def release_bike
-    fail "No bikes available" if empty?
-    @bikes.pop
+    fail "No bikes available" if working_bikes.empty?
+    bike_to_release = @bikes.find {|bike| bike.working?}
+    @bikes.delete bike_to_release 
+
   end
 
   def dock bike
@@ -19,9 +21,9 @@ class DockingStation
     @bikes << bike
   end
 
-  def bike_count
-    @bikes.count
-  end
+  #def bike_count
+    #@bikes.count
+  #end
 
   private
 
@@ -33,5 +35,9 @@ class DockingStation
 
   def empty?
     bikes.empty?
+  end
+
+  def working_bikes
+    bikes.select {|bike| bike.working?}
   end
 end
