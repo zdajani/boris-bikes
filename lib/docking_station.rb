@@ -1,6 +1,7 @@
 require_relative 'bike'
 
 class DockingStation
+
   DEFAULT_CAPACITY = 20
   attr_accessor :capacity
 
@@ -11,14 +12,14 @@ class DockingStation
 
   def release_bike
     fail "No bikes available" if working_bikes.empty?
-    bike_to_release = @bikes.find {|bike| bike.working?}
-    @bikes.delete bike_to_release 
 
+    bike_to_release = bikes.find {|bike| bike.working?}
+    bikes.delete bike_to_release
   end
 
   def dock bike
     fail 'Docking station full' if full?
-    @bikes << bike
+    bikes << bike
   end
 
   #def bike_count
